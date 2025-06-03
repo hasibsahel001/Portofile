@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasib Sahel - Network Specialist & Programmer</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00F5FF',secondary:'#7928CA'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0A0F1D;
+color: #fff;
+overflow-x: hidden;
+}
+.gradient-text {
+background: linear-gradient(90deg, #00F5FF, #7928CA);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.custom-shadow {
+box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
+}
+.card {
+background: rgba(13, 18, 34, 0.7);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.05);
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.hero-particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 0;
+}
+.timeline-item::before {
+content: '';
+position: absolute;
+left: -38px;
+top: 0;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background: #00F5FF;
+box-shadow: 0 0 15px rgba(0, 245, 255, 0.8);
+z-index: 1;
+}
+.timeline-line {
+position: absolute;
+left: -30px;
+top: 0;
+width: 2px;
+height: 100%;
+background: linear-gradient(to bottom, rgba(0, 245, 255, 0.7), rgba(121, 40, 202, 0.7));
+}
+.skill-bar {
+height: 8px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 4px;
+overflow: hidden;
+}
+.skill-progress {
+height: 100%;
+background: linear-gradient(90deg, #00F5FF, #7928CA);
+border-radius: 4px;
+transition: width 1.5s ease;
+}
+input:focus, textarea:focus {
+outline: none;
+border-color: #00F5FF;
+box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
+}
+.floating-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 100;
+animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+0%, 100% {
+transform: translateY(0);
+}
+50% {
+transform: translateY(-10px);
+}
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 0;
+height: 2px;
+background: #00F5FF;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+width: 100%;
+}
+.hexagon {
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+transition: transform 0.3s ease;
+}
+.hexagon:hover {
+transform: translateY(-10px);
+}
+@media (max-width: 768px) {
+.timeline-item::before {
+left: -28px;
+}
+.timeline-line {
+left: -20px;
+}
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-opacity-10 bg-black backdrop-blur-md border-b border-gray-800">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<a href="#" class="text-2xl font-['Pacifico'] text-white">Hasib Sahel</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-link text-white hover:text-primary transition-colors">Home</a>
+<a href="#about" class="nav-link text-white hover:text-primary transition-colors">About</a>
+<a href="#skills" class="nav-link text-white hover:text-primary transition-colors">Skills</a>
+<a href="#experience" class="nav-link text-white hover:text-primary transition-colors">Experience</a>
+<a href="#education" class="nav-link text-white hover:text-primary transition-colors">Education</a>
+<a href="#contact" class="nav-link text-white hover:text-primary transition-colors">Contact</a>
+</div>
+<div class="md:hidden flex items-center">
+<button id="mobile-menu-button" class="text-white focus:outline-none">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-[#0B1930] border-t border-gray-800">
+<div class="container mx-auto px-6 py-4">
+<div class="flex flex-col space-y-4">
+<a href="#home" class="text-white hover:text-primary transition-colors">Home</a>
+<a href="#about" class="text-white hover:text-primary transition-colors">About</a>
+<a href="#skills" class="text-white hover:text-primary transition-colors">Skills</a>
+<a href="#experience" class="text-white hover:text-primary transition-colors">Experience</a>
+<a href="#education" class="text-white hover:text-primary transition-colors">Education</a>
+<a href="#contact" class="text-white hover:text-primary transition-colors">Contact</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+<div id="particles-container" class="hero-particles"></div>
+<div class="container mx-auto px-6 z-10">
+<div class="flex flex-col items-center text-center">
+<div class="w-48 h-48 rounded-full overflow-hidden mb-8 custom-shadow">
+<img src="hasib3.jpg" alt="Hasib Sahel" class="w-full h-full object-cover">
+</div>
+<h1 class="text-4xl md:text-6xl font-bold mb-4">Hasib Sahel</h1>
+<div class="typewriter-container h-12 flex items-center justify-center mb-8">
+<h2 id="typewriter" class="text-xl md:text-2xl gradient-text">Aspiring Network Specialist & Programmer</h2>
+</div>
+<div class="flex space-x-4 mb-12">
+<a href="#contact" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-button font-medium hover:opacity-90 transition-opacity whitespace-nowrap">Get in Touch</a>
+<a href="#about" class="bg-transparent border border-primary text-primary px-8 py-3 rounded-button font-medium hover:bg-primary hover:bg-opacity-10 transition-all whitespace-nowrap">Learn More</a>
+</div>
+<div class="animate-bounce mt-16">
+<a href="#about" class="text-white opacity-70 hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-arrow-down-line ri-2x"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-20 bg-[#080C17]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="card p-8 rounded-lg">
+<h3 class="text-2xl font-semibold mb-6 gradient-text">Personal Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-user-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white">Full Name</h4>
+<p class="text-gray-300">Hasib Sahel</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-calendar-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white">Birthday</h4>
+<p class="text-gray-300">June 28, 2004</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white">Location</h4>
+<p class="text-gray-300">Herat, Afghanistan</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-mail-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white">Email</h4>
+<p class="text-gray-300">hasibsahel001@gmail.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center text-primary mr-4">
+<i class="ri-phone-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white">Phone</h4>
+<p class="text-gray-300">+93 729 011 991</p>
+</div>
+</div>
+</div>
+</div>
+<div class="card p-8 rounded-lg">
+<h3 class="text-2xl font-semibold mb-6 gradient-text">About Me</h3>
+<p class="text-gray-300 mb-6 leading-relaxed">
+I am a passionate Network Specialist and Programmer with a strong foundation in computer science and networking technologies. My journey in the tech world began with a curiosity about how systems communicate, which led me to pursue education and practical experience in networking and programming.
+</p>
+<p class="text-gray-300 mb-8 leading-relaxed">
+Currently working at Hindukush Bridge ICT as a Network Support Technician, I apply my knowledge of MikroTik and Cisco technologies to solve complex networking challenges. I am also dedicated to sharing my knowledge as an instructor, teaching ICDL and English to aspiring students.
+</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-white">Networking</span>
+<span class="text-primary">90%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-white">Programming</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-white">Teaching</span>
+<span class="text-primary">95%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 95%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-[#0A0F1D]">
+<div class="container mx-auto px-14">
+<div class="text-center mb-14">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">
+I've developed a diverse set of skills throughout my education and professional experience. Here are the key areas where I excel:
+</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+<!-- Programming Skills -->
+<div class="hexagon bg-gradient-to-br from-[#0F1E3C] to-[#162A4A] p-8 transform transition-all hover:scale-105 border border-primary/10 shadow-lg shadow-primary/5">
+<div class="text-center">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary bg-primary/10 rounded-2xl">
+<i class="ri-code-line ri-3x"></i>
+</div>
+<h3 class="text-2xl font-semibold mb-4 text-white">Programming</h3>
+<ul class="text-gray-200 space-y-3">
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+<span>HTML</span>
+</li>
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+CSS
+</li>
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+JavaScript
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+Flutter
+</li>
+<li class="flex items-center">
+  <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+  </span>
+  
+</li>
+</ul>
+</div>
+</div>
+<!-- Networking Skills -->
+<div class="hexagon bg-gradient-to-br from-[#0F1E3C] to-[#162A4A] p-8 transform transition-all hover:scale-105 border border-primary/10 shadow-lg shadow-primary/5">
+    <div class="text-center">
+    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary bg-primary/10 rounded-2xl">
+    <i class="ri-book-open-line ri-2x"></i>
+    </div>
+    <h3 class="text-2xl font-semibold mb-4 text-white">Networking</h3>
+    <ul class="text-gray-200 space-y-3">
+    <li class="flex items-center">
+    <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+    <i class="ri-checkbox-circle-line"></i>
+    </span>
+    Mikrotik
+    </li>
+    <li class="flex items-center">
+    <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+    <i class="ri-checkbox-circle-line"></i>
+    </span>
+    Cisco
+    </li>
+    <li class="flex items-center">
+    <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+    <i class="ri-checkbox-circle-line"></i>
+    </span>
+    Network +
+    </li>
+    <li class="flex items-center">
+    <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+    <i class="ri-checkbox-circle-line"></i>
+    </span>
+    Troubleshooting
+  </li>
+  <li class="flex items-center">
+    <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+    </span>
+    
+  </li>
+    </ul>
+    </div>
+    </div>
+<!-- Teaching Skills -->
+<div class="hexagon bg-gradient-to-br from-[#0F1E3C] to-[#162A4A] p-8 transform transition-all hover:scale-105 border border-primary/10 shadow-lg shadow-primary/5">
+<div class="text-center">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary bg-primary/10 rounded-2xl">
+<i class="ri-book-open-line ri-2x"></i>
+</div>
+<h3 class="text-2xl font-semibold mb-4 text-white">Teaching</h3>
+<ul class="text-gray-200 space-y-3">
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+ICDL Instruction
+</li>
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+English Teaching
+</li>
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+Planning
+</li>
+<li class="flex items-center">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+<i class="ri-checkbox-circle-line"></i>
+</span>
+Student Assessment
+</li>
+</li>
+<li class="flex items-center">
+  <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+  </span>
+  
+</li>
+</ul>
+</div>
+</div>
+<!-- Soft Skills -->
+<div class="hexagon bg-gradient-to-br from-[#0F1E3C] to-[#162A4A] p-10 transform transition-all hover:scale-105 border border-primary/10 shadow-lg shadow-primary/5">
+    <div class="text-center">
+      <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center text-primary bg-primary/10 rounded-2xl">
+        <i class="ri-user-heart-line ri-3x"></i>
+      </div>
+      <h3 class="text-2xl font-semibold mb-6 text-white">Soft Skills</h3>
+      <ul class="text-gray-200 space-y-4">
+        <li class="flex items-center">
+          <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+            <i class="ri-checkbox-circle-line"></i>
+          </span>
+          Fast Learning
+        </li>
+        <li class="flex items-center">
+          <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+            <i class="ri-checkbox-circle-line"></i>
+          </span>
+          Problem Solving
+        </li>
+        <li class="flex items-center">
+          <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+            <i class="ri-checkbox-circle-line"></i>
+          </span>
+          Communication
+        </li>
+        <li class="flex items-center">
+          <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+            <i class="ri-checkbox-circle-line"></i>
+          </span>
+          Teamwork
+        </li>
+        <li class="flex items-center">
+          <span class="w-4 h-4 flex items-center justify-center text-primary mr-2">
+            
+          </span>
+          
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+</div>
+</section>
+<!-- Experience Section -->
+<section id="experience" class="py-20 bg-[#080C17]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">Professional Experience</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">
+My professional journey has equipped me with practical experience in networking, installation, and education.
+</p>
+</div>
+<div class="relative max-w-3xl mx-auto pl-10 md:pl-12">
+<div class="timeline-line"></div>
+<!-- Experience 1 -->
+<div class="timeline-item relative mb-16 pb-8">
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+<h3 class="text-2xl font-semibold gradient-text">Network Support Technician</h3>
+<div class="mt-2 md:mt-0 px-4 py-1 rounded-full bg-primary bg-opacity-20 text-primary text-sm">
+2023 - Present
+</div>
+</div>
+<h4 class="text-xl text-white mb-4">Hindukush Bridge ICT</h4>
+<ul class="text-gray-300 space-y-3">
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Provided technical support for network infrastructure, ensuring optimal performance and minimal downtime.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Configured and maintained MikroTik and Cisco networking equipment for clients.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Troubleshot complex network issues and implemented effective solutions.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Collaborated with team members to design and implement network upgrades.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Experience 2 -->
+<div class="timeline-item relative mb-16 pb-8">
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+<h3 class="text-2xl font-semibold gradient-text">Installation Technician</h3>
+<div class="mt-2 md:mt-0 px-4 py-1 rounded-full bg-primary bg-opacity-20 text-primary text-sm">
+12 Months
+</div>
+</div>
+<h4 class="text-xl text-white mb-4">Network Solutions Provider</h4>
+<ul class="text-gray-300 space-y-3">
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Installed and configured networking equipment for residential and business clients.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Set up wireless networks, ensuring optimal coverage and performance.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Conducted site surveys to determine the best equipment placement for maximum efficiency.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Provided basic training to clients on network usage and troubleshooting.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Experience 3 -->
+<div class="timeline-item relative">
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+<h3 class="text-2xl font-semibold gradient-text">ICDL & English Instructor</h3>
+<div class="mt-2 md:mt-0 px-4 py-1 rounded-full bg-primary bg-opacity-20 text-primary text-sm">
+3 Years
+</div>
+</div>
+<h4 class="text-xl text-white mb-4">Nosrat Institute</h4>
+<ul class="text-gray-300 space-y-3">
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Taught ICDL modules including computer essentials, word processing, spreadsheets, and presentations.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Conducted English language courses for students of various proficiency levels.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Developed customized learning materials to meet the specific needs of students.</span>
+</li>
+<li class="flex items-start">
+<span class="w-4 h-4 flex items-center justify-center text-primary mr-3 mt-1">
+<i class="ri-arrow-right-circle-line"></i>
+</span>
+<span>Evaluated student progress and provided constructive feedback to enhance learning outcomes.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Education Section -->
+<section id="education" class="py-20 bg-[#0A0F1D]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">Education & Certifications</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">
+My educational background and certifications have provided me with a strong foundation in computer science and specialized skills.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Diploma in Computer Science -->
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-graduation-cap-line ri-lg"></i>
+</div>
+<h3 class="text-2xl font-semibold gradient-text">Diploma in Computer Science</h3>
+</div>
+<div class="mb-4">
+<h4 class="text-xl text-white">Herat Technical Institute</h4>
+<p class="text-gray-400">2022 - 2024</p>
+</div>
+<div class="px-4 py-2 rounded-full bg-primary bg-opacity-20 text-primary text-sm inline-block mb-6">
+Top Student
+</div>
+<p class="text-gray-300">
+Completed a comprehensive diploma program in Computer Science, focusing on programming, networking, and computer systems. Graduated as the top student in my class, demonstrating exceptional academic achievement and technical aptitude.
+</p>
+</div>
+<!-- High School Diploma -->
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-book-line ri-lg"></i>
+</div>
+<h3 class="text-2xl font-semibold gradient-text">High School Diploma</h3>
+</div>
+<div class="mb-4">
+<h4 class="text-xl text-white">Khoja Shahabuddin</h4>
+<p class="text-gray-400">Graduated in 2022</p>
+</div>
+<p class="text-gray-300">
+Completed my high school education with a focus on mathematics and science. Developed strong analytical and problem-solving skills, which have been valuable in my technical pursuits.
+</p>
+</div>
+<!-- Programming Certificate -->
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-code-box-line ri-lg"></i>
+</div>
+<h3 class="text-2xl font-semibold gradient-text">Programming Certificate</h3>
+</div>
+<div class="mb-4">
+<h4 class="text-xl text-white">CTI Academy</h4>
+<p class="text-gray-400">Dart & Flutter</p>
+</div>
+<p class="text-gray-300">
+Earned a specialized certificate in Dart programming language and Flutter framework for cross-platform mobile application development. Gained hands-on experience in building responsive and efficient mobile applications.
+</p>
+</div>
+<!-- ICDL & English -->
+<div class="card p-8 rounded-lg transform transition-all hover:translate-y-[-5px] hover:shadow-lg">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-translate-2-line ri-lg"></i>
+</div>
+<h3 class="text-2xl font-semibold gradient-text">ICDL & English</h3>
+</div>
+<div class="mb-4">
+<h4 class="text-xl text-white">Nosrat Academy</h4>
+<p class="text-gray-400">Certification Programs</p>
+</div>
+<p class="text-gray-300">
+Completed comprehensive certification programs in International Computer Driving License (ICDL) and English language proficiency. These certifications have enhanced my technical skills and communication abilities, which are essential in the global tech industry.
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-[#080C17]">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+<p class="text-gray-300 mt-6 max-w-2xl mx-auto">
+Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="card p-8 rounded-lg">
+<h3 class="text-2xl font-semibold mb-8 gradient-text">Send Me a Message</h3>
+<form id="contact-form" class="space-y-6" action="" method="POST">
+<div>
+<label for="name" class="block text-gray-300 mb-2">Your Name</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 bg-[#0D1222] border border-gray-800 rounded focus:border-primary text-white" placeholder="Enter your name" required>
+</div>
+<div>
+<label for="email" class="block text-gray-300 mb-2">Your Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 bg-[#0D1222] border border-gray-800 rounded focus:border-primary text-white" placeholder="Enter your email" required>
+</div>
+<div>
+<label for="subject" class="block text-gray-300 mb-2">Subject</label>
+<input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-[#0D1222] border border-gray-800 rounded focus:border-primary text-white" placeholder="Enter subject">
+</div>
+<div>
+<label for="message" class="block text-gray-300 mb-2">Message</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-[#0D1222] border border-gray-800 rounded focus:border-primary text-white resize-none" placeholder="Enter your message" required></textarea>
+</div>
+<button type="submit" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-button font-medium hover:opacity-90 transition-opacity whitespace-nowrap">Send Message</button>
+</form>
+</div>
+<div class="card p-8 rounded-lg">
+<h3 class="text-2xl font-semibold mb-8 gradient-text">Contact Information</h3>
+<div class="space-y-8">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-map-pin-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Location</h4>
+<p class="text-gray-300">Herat, Afghanistan</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-mail-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Email</h4>
+<p class="text-gray-300">hasibsahel001@gmail.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-phone-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Phone</h4>
+<p class="text-gray-300">+93 729 011 991</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center text-primary mr-4 bg-primary bg-opacity-10 rounded-full">
+<i class="ri-time-line ri-lg"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium text-white mb-1">Working Hours</h4>
+<p class="text-gray-300">All days of week</p>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<h4 class="text-lg font-medium text-white mb-4">Follow Me</h4>
+<div class="flex space-x-4">
+<a href="https://www.facebook.com/share/16H7wDUNb4/" target="_blank" class="w-10 h-10 flex items-center justify-center text-white bg-[#0F1E3C] rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="https://github.com/hasibsahel001" target="_blank" class="w-10 h-10 flex items-center justify-center text-white bg-[#0F1E3C] rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-github-fill"></i>
+</a>
+<a href="https://t.me/hasibsahel" target="_blank" class="w-10 h-10 flex items-center justify-center text-white bg-[#0F1E3C] rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-telegram-fill"></i>
+</a>
+<a href="https://www.instagram.com/hasibsahel001?igsh=MTYwZWF2dGdlMTg1cg==" target="_blank" class="w-10 h-10 flex items-center justify-center text-white bg-[#0F1E3C] rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-10 bg-[#060911] border-t border-gray-800">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<a href="#" class="text-2xl font-['Pacifico'] text-white">Hasib Sahel</a>
+<p class="text-gray-400 mt-2">Network Specialist & Programmer</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+<a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+<a href="#skills" class="text-gray-300 hover:text-primary transition-colors">Skills</a>
+<a href="#experience" class="text-gray-300 hover:text-primary transition-colors">Experience</a>
+<a href="#education" class="text-gray-300 hover:text-primary transition-colors">Education</a>
+<a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Hasib Sahel. All rights reserved.</p>
+<p class="text-gray-400 text-sm">Last updated: May 3, 2025</p>
+</div>
+</div>
+</footer>
+<!-- Floating Download CV Button -->
+<a href="CV.pdf" download class="floating-button bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg custom-shadow whitespace-nowrap">
+<div class="flex items-center">
+<span class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-download-line"></i>
+</span>
+Download CV
+</div>
+</a>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile Menu Toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Smooth Scrolling for Anchor Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+// Close mobile menu if open
+if (!mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+}
+}
+});
+});
+// Form Submission Handler
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const submitButton = this.querySelector('button[type="submit"]');
+const originalText = submitButton.innerHTML;
+const formData = new FormData(this);
+submitButton.innerHTML = '<div class="flex items-center"><span class="w-5 h-5 flex items-center justify-center mr-2"><i class="ri-loader-2-line animate-spin"></i></span>Sending...</div>';
+submitButton.disabled = true;
+const emailBody = `
+Name: ${formData.get('name')}
+Email: ${formData.get('email')}
+Subject: ${formData.get('subject')}
+Message: ${formData.get('message')}
+`;
+const mailtoLink = `mailto:hasibsahel001@gmail.com?subject=${encodeURIComponent(formData.get('subject'))}&body=${encodeURIComponent(emailBody)}`;
+window.location.href = mailtoLink;
+setTimeout(() => {
+submitButton.innerHTML = '<div class="flex items-center"><span class="w-5 h-5 flex items-center justify-center mr-2"><i class="ri-check-line"></i></span>Message Sent!</div>';
+contactForm.reset();
+submitButton.disabled = false;
+setTimeout(() => {
+submitButton.innerHTML = originalText;
+}, 3000);
+}, 1500);
+});
+}
+});
+// Typewriter Effect
+document.addEventListener('DOMContentLoaded', function() {
+const typewriterElement = document.getElementById('typewriter');
+const texts = [
+'Network Specialist & Programmer',
+'MikroTik & Cisco Network Expert',
+'Dart & Flutter Developer',
+'ICDL & English Instructor'
+];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+function type() {
+const currentText = texts[textIndex];
+if (isDeleting) {
+typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+charIndex--;
+typingSpeed = 50;
+} else {
+typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+charIndex++;
+typingSpeed = 100;
+}
+if (!isDeleting && charIndex === currentText.length) {
+isDeleting = true;
+typingSpeed = 1500; // Pause at end
+} else if (isDeleting && charIndex === 0) {
+isDeleting = false;
+textIndex = (textIndex + 1) % texts.length;
+typingSpeed = 500; // Pause before typing next
+}
+setTimeout(type, typingSpeed);
+}
+setTimeout(type, 1000);
+});
+// Skills Chart
+document.addEventListener('DOMContentLoaded', function() {
+const skillsChart = document.getElementById('skills-chart');
+if (skillsChart) {
+const chart = echarts.init(skillsChart);
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+radar: {
+indicator: [
+{ name: 'Networking', max: 100 },
+{ name: 'Programming', max: 100 },
+{ name: 'Teaching', max: 100 },
+{ name: 'Problem Solving', max: 100 },
+{ name: 'Communication', max: 100 },
+{ name: 'Fast Learning', max: 100 }
+],
+splitArea: {
+areaStyle: {
+color: ['rgba(15, 30, 60, 0.2)'],
+shadowColor: 'rgba(0, 0, 0, 0.2)',
+shadowBlur: 10
+}
+},
+axisLine: {
+lineStyle: {
+color: 'rgba(255, 255, 255, 0.2)'
+}
+},
+splitLine: {
+lineStyle: {
+color: 'rgba(255, 255, 255, 0.2)'
+}
+}
+},
+series: [{
+name: 'Skills Proficiency',
+type: 'radar',
+data: [{
+value: [90, 85, 95, 88, 92, 96],
+name: 'Skill Level',
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{ offset: 0, color: 'rgba(87, 181, 231, 0.8)' },
+{ offset: 1, color: 'rgba(87, 181, 231, 0.1)' }
+])
+},
+lineStyle: {
+color: 'rgba(87, 181, 231, 1)',
+width: 2
+},
+itemStyle: {
+color: 'rgba(87, 181, 231, 1)'
+}
+}]
+}]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+}
+});
+// Particles Animation for Hero Section
+document.addEventListener('DOMContentLoaded', function() {
+const particlesContainer = document.getElementById('particles-container');
+if (particlesContainer && window.THREE) {
+let scene, camera, renderer, particles, particleSystem;
+let width = particlesContainer.offsetWidth;
+let height = particlesContainer.offsetHeight;
+function init() {
+scene = new THREE.Scene();
+camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+camera.position.z = 30;
+renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(width, height);
+renderer.setClearColor(0x000000, 0);
+particlesContainer.appendChild(renderer.domElement);
+// Create particles
+const particleCount = 150;
+const particleGeometry = new THREE.BufferGeometry();
+const particlePositions = new Float32Array(particleCount * 3);
+const particleSizes = new Float32Array(particleCount);
+for (let i = 0; i < particleCount; i++) {
+const i3 = i * 3;
+particlePositions[i3] = (Math.random() - 0.5) * 60;
+particlePositions[i3 + 1] = (Math.random() - 0.5) * 60;
+particlePositions[i3 + 2] = (Math.random() - 0.5) * 60;
+particleSizes[i] = Math.random() * 0.5 + 0.1;
+}
+particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+particleGeometry.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
+const particleMaterial = new THREE.PointsMaterial({
+color: 0x00F5FF,
+size: 0.5,
+transparent: true,
+opacity: 0.8,
+sizeAttenuation: true
+});
+particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+scene.add(particleSystem);
+animate();
+}
+function animate() {
+requestAnimationFrame(animate);
+particleSystem.rotation.x += 0.0005;
+particleSystem.rotation.y += 0.0005;
+renderer.render(scene, camera);
+}
+function onWindowResize() {
+width = particlesContainer.offsetWidth;
+height = particlesContainer.offsetHeight;
+camera.aspect = width / height;
+camera.updateProjectionMatrix();
+renderer.setSize(width, height);
+}
+window.addEventListener('resize', onWindowResize);
+init();
+}
+});
+// Intersection Observer for Scroll Animations
+document.addEventListener('DOMContentLoaded', function() {
+const animatedElements = document.querySelectorAll('.card, .timeline-item, .hexagon');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = '1';
+entry.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+animatedElements.forEach(element => {
+element.style.opacity = '0';
+element.style.transform = 'translateY(20px)';
+element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+observer.observe(element);
+});
+});
+</script>
+</body>
+</html>
